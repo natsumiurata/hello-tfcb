@@ -14,6 +14,16 @@ provider "aws" {
   region     = var.region
 }
 
+//--------------------------------------------------------------------
+// Modules
+module "devinstance" {
+	source  = "app.terraform.io/n_urata_org/devinstance/aws"
+	version = "0.0.2"
+
+	hello_tf_instance_type = "t2.small"
+        prefix = "URATA"
+}
+
 resource "aws_vpc" "hashicat" {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
